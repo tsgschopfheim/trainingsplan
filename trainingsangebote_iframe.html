@@ -1,479 +1,60 @@
-<style>
-    h2 { font-family: Arial, sans-serif; }
 
-    input[type="text"] {
-        margin-bottom: 15px;
-        padding: 5px;
-        width: 300px;
-    }
+<input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Suchbegriff (Abteilung, Sportart, Trainer eingeben...)">
 
-    table#dataTable {
-        border-collapse: collapse;
-        width: 100%;
-        font-family: Arial, sans-serif;
-    }
-
-    table#dataTable th,
-    table#dataTable td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left;
-    }
-
-    table#dataTable th {
-        background-color: #dbe5f0 !important;
-    }
-
-    table#dataTable tbody tr:nth-child(even) {
-        background-color: #f4f8fc !important;
-    }
-
-    table#dataTable tbody tr:nth-child(odd) {
-        background-color: #ffffff !important;
-    }
-
-    table#dataTable tbody tr:hover {
-        background-color: #e6f2ff !important;
-    }
-</style>
-
-
-<h2>Bitte nutzen sie die Filterfunktion um das richtige Training zu finden</h2>
-<input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Suchbegriff (Abteilung, Sportart, Trainer eingeben...">
-
-<table border="1" id="dataTable">
+<table id="dataTable" style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
   <thead>
-    <tr style="text-align: right;">
-      <th>#</th>
-      <th>Abteilung</th>
-      <th>Trainingsgruppe</th>
-      <th>Altergruppierung</th>
-      <th>Tag</th>
-      <th>Uhrzeit</th>
-      <th>Trainingsort</th>
-      <th>Hallennummer</th>
-      <th>Übungsleiter</th>
+    <tr style="background-color: #dbe5f0;">
+      <th style="border: 1px solid #ccc; padding: 8px;">#</th>
+      <th style="border: 1px solid #ccc; padding: 8px;">Abteilung</th>
+      <th style="border: 1px solid #ccc; padding: 8px;">Trainingsgruppe</th>
+      <th style="border: 1px solid #ccc; padding: 8px;">Altergruppierung</th>
+      <th style="border: 1px solid #ccc; padding: 8px;">Tag</th>
+      <th style="border: 1px solid #ccc; padding: 8px;">Uhrzeit</th>
+      <th style="border: 1px solid #ccc; padding: 8px;">Trainingsort</th>
+      <th style="border: 1px solid #ccc; padding: 8px;">Hallennummer</th>
+      <th style="border: 1px solid #ccc; padding: 8px;">Übungsleiter</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>1</td>
-      <td>Badminton</td>
-      <td>Jugend</td>
-      <td>Kinder/Jugend</td>
-      <td>Dienstag</td>
-      <td>17:00 - 20:00 Uhr</td>
-      <td>Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td>
-      <td></td>
-      <td>Hans-Georg Kolodziej</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Badminton</td>
-      <td>Jugend</td>
-      <td>Kinder/Jugend</td>
-      <td>Donnerstag</td>
-      <td>18:00 - 20:00 Uhr</td>
-      <td>Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td>
-      <td></td>
-      <td>Hans-Georg Kolodziej</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Badminton</td>
-      <td>Erwachsene (Hobby)</td>
-      <td>Erwachsene</td>
-      <td>Dienstag</td>
-      <td>20:00 - 22:00 Uhr</td>
-      <td>Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td>
-      <td></td>
-      <td>Michael-Dittrich Klimmer</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Badminton</td>
-      <td>Erwachsene (Hobby)</td>
-      <td>Erwachsene</td>
-      <td>Donnerstag</td>
-      <td>20:00 - 22:00 Uhr</td>
-      <td>Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td>
-      <td></td>
-      <td>Michael-Dittrich Klimmer</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Basketball</td>
-      <td>U10 (8–10 Jahre)</td>
-      <td>Kinder/Jugend</td>
-      <td>Mittwoch</td>
-      <td>17:30 - 18:30 Uhr</td>
-      <td>Vicemooshalle, Schlierbachstraße 23,</td>
-      <td>1</td>
-      <td>Matthias Bäumle, Ole Wendelborn</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>Basketball</td>
-      <td>U10 (8–10 Jahre)</td>
-      <td>Kinder/Jugend</td>
-      <td>Freitag</td>
-      <td>17:30 - 18:30 Uhr</td>
-      <td>Vicemooshalle, Schlierbachstraße 23,</td>
-      <td>1</td>
-      <td>Matthias Bäumle, Ole Wendelborn</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>Basketball</td>
-      <td>U12/U14</td>
-      <td>Kinder/Jugend</td>
-      <td>Dienstag</td>
-      <td>17:15 - 18:30 Uhr</td>
-      <td>Theodor-Heuss-Gymnasium - Halle, Schlierbachstraße 19, Schopfheim</td>
-      <td></td>
-      <td>Patrick Weide, Michael Scharbatke, Nikola Cvijan</td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td>Basketball</td>
-      <td>U12/U14</td>
-      <td>Kinder/Jugend</td>
-      <td>Freitag</td>
-      <td>17:30 - 18:30 Uhr</td>
-      <td>Vicemooshalle, Schlierbachstraße 23,</td>
-      <td>3</td>
-      <td>Patrick Weide, Michael Scharbatke, Nikola Cvijan</td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td>Basketball</td>
-      <td>U16</td>
-      <td>Kinder/Jugend</td>
-      <td>Dienstag</td>
-      <td>18:30 - 20:00 Uhr</td>
-      <td>Theodor-Heuss-Gymnasium - Halle, Schlierbachstraße 19, Schopfheim</td>
-      <td></td>
-      <td>David Schöne, Maurice Hartig</td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td>Basketball</td>
-      <td>U16</td>
-      <td>Kinder/Jugend</td>
-      <td>Freitag</td>
-      <td>18:15 - 19:45 Uhr</td>
-      <td>Theodor-Heuss-Gymnasium - Halle, Schlierbachstraße 19, Schopfheim</td>
-      <td></td>
-      <td>David Schöne, Maurice Hartig</td>
-    </tr>
-    <tr>
-      <td>11</td>
-      <td>Basketball</td>
-      <td>Herren (>17)</td>
-      <td>Erwachsene</td>
-      <td>Dienstag</td>
-      <td>20:00 - 22:00 Uhr</td>
-      <td>Theodor-Heuss-Gymnasium - Halle, Schlierbachstraße 19, Schopfheim</td>
-      <td></td>
-      <td>[Vakant]</td>
-    </tr>
-    <tr>
-      <td>12</td>
-      <td>Basketball</td>
-      <td>Herren (>17)</td>
-      <td>Erwachsene</td>
-      <td>Freitag</td>
-      <td>20:00 - 22:00 Uhr</td>
-      <td>Theodor-Heuss-Gymnasium - Halle, Schlierbachstraße 19, Schopfheim</td>
-      <td></td>
-      <td>[Vakant]</td>
-    </tr>
-    <tr>
-      <td>13</td>
-      <td>Eskrima</td>
-      <td>Allgemeines Training</td>
-      <td>Erwachsene</td>
-      <td>Mittwoch</td>
-      <td>18:30 - 20:00 Uhr</td>
-      <td>Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td>
-      <td></td>
-      <td>Julia Cielo</td>
-    </tr>
-    <tr>
-      <td>14</td>
-      <td>Eskrima</td>
-      <td>Allgemeines Training</td>
-      <td>Erwachsene</td>
-      <td>Freitag</td>
-      <td>18:30 - 20:00 Uhr</td>
-      <td>Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td>
-      <td></td>
-      <td>Julia Cielo</td>
-    </tr>
-    <tr>
-      <td>15</td>
-      <td>Lauftreff</td>
-      <td>Lauftraining für Erwachsene</td>
-      <td>Erwachsene</td>
-      <td>Montag</td>
-      <td>18:30 Uhr</td>
-      <td>Treffpunkt: Wiesenbrücke Altstadt (gegenüber Entegaststraße 30)</td>
-      <td></td>
-      <td>Isabella Nothstein</td>
-    </tr>
-    <tr>
-      <td>16</td>
-      <td>Lauftreff</td>
-      <td>Lauftraining für Erwachsene</td>
-      <td>Erwachsene</td>
-      <td>Samstag</td>
-      <td>9:00 Uhr</td>
-      <td>Treffpunkt: Wiesenbrücke Altstadt (gegenüber Entegaststraße 30)</td>
-      <td></td>
-      <td>Isabella Nothstein</td>
-    </tr>
-    <tr>
-      <td>17</td>
-      <td>Schneesport</td>
-      <td>Schneesport</td>
-      <td>Erwachsene</td>
-      <td>Mittwoch</td>
-      <td>19:00-22:00</td>
-      <td>Theodor-Heuss-Gymnasium - Halle, Schlierbachstraße 19, Schopfheim</td>
-      <td></td>
-      <td>Josi Fleig</td>
-    </tr>
-    <tr>
-      <td>18</td>
-      <td>Schwimmen</td>
-      <td>Anfänger und Fortgeschrittene</td>
-      <td>Kinder/Jugend</td>
-      <td>Donnerstag</td>
-      <td>16:45 - 18:00 Uhr</td>
-      <td>Allemannenhalle Maulburg</td>
-      <td></td>
-      <td>Dietmar Birgel</td>
-    </tr>
-    <tr>
-      <td>19</td>
-      <td>Schwimmen</td>
-      <td>Anfänger und Fortgeschrittene</td>
-      <td>Kinder/Jugend</td>
-      <td>Samstag</td>
-      <td>06:45 - 09:00 Uhr</td>
-      <td>Allemannenhalle Maulburg</td>
-      <td></td>
-      <td>Dietmar Birgel</td>
-    </tr>
-    <tr>
-      <td>20</td>
-      <td>Schwimmen</td>
-      <td>Fortgeschrittene II</td>
-      <td>Erwachsene</td>
-      <td>Donnerstag</td>
-      <td>17:45 - 19:30 Uhr</td>
-      <td>Allemannenhalle Maulburg</td>
-      <td></td>
-      <td>Eduardo Peñarand</td>
-    </tr>
-    <tr>
-      <td>21</td>
-      <td>Schwimmen</td>
-      <td>Fortgeschrittene II</td>
-      <td>Erwachsene</td>
-      <td>Samstag</td>
-      <td>09:00 - 11:00 Uhr</td>
-      <td>Allemannenhalle Maulburg</td>
-      <td></td>
-      <td>Eduardo Peñarand</td>
-    </tr>
-    <tr>
-      <td>22</td>
-      <td>Turnen</td>
-      <td>Seniorengymnastik 60+</td>
-      <td>Erwachsene</td>
-      <td>Montag</td>
-      <td>17:15 - 18:15 Uhr</td>
-      <td>Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td>
-      <td></td>
-      <td>Birgit Kropf</td>
-    </tr>
-    <tr>
-      <td>23</td>
-      <td>Turnen</td>
-      <td>Fit und Gesund für Sie & Ihn</td>
-      <td>Erwachsene</td>
-      <td>Montag</td>
-      <td>18:15 - 19:15 Uhr</td>
-      <td>Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td>
-      <td></td>
-      <td>Birgit Kropf</td>
-    </tr>
-    <tr>
-      <td>24</td>
-      <td>Turnen</td>
-      <td>Jedermann-Sport 40+</td>
-      <td>Erwachsene</td>
-      <td>Montag</td>
-      <td>19:30- 21:30 Uhr</td>
-      <td>Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td>
-      <td></td>
-      <td>Hanspeter Pfeifer / Reinhard Oberlach</td>
-    </tr>
-    <tr>
-      <td>25</td>
-      <td>Turnen</td>
-      <td>Geräteturnen für Mädchen</td>
-      <td>Kinder/Jugend</td>
-      <td>Freitag</td>
-      <td>17:00 - 19:00 Uhr</td>
-      <td>Vicemooshalle, Schlierbachstraße 23,</td>
-      <td>3</td>
-      <td>Lenja Klausmann</td>
-    </tr>
-    <tr>
-      <td>26</td>
-      <td>Turnen</td>
-      <td>Yoga-Gruppe Frauen</td>
-      <td>Erwachsene</td>
-      <td>Mittwoch</td>
-      <td>17:00 - 18:00 Uhr</td>
-      <td>Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td>
-      <td></td>
-      <td>Birgit Kropf</td>
-    </tr>
-    <tr>
-      <td>27</td>
-      <td>Turnen</td>
-      <td>Männergymnastik 60+</td>
-      <td>Erwachsene</td>
-      <td>Montag</td>
-      <td>18:00 - 19:30 Uhr</td>
-      <td>Roggenbachhalle, Roggenbachstraße 11, Schopfheim</td>
-      <td>3</td>
-      <td>Karlheinz Andris</td>
-    </tr>
-    <tr>
-      <td>28</td>
-      <td>Turnen</td>
-      <td>Kleinkinder- und Vorschulturnen Grupp 1</td>
-      <td>Kinder/Jugend</td>
-      <td>Freitag</td>
-      <td>15:45 - 17:00 Uhr</td>
-      <td>Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td>
-      <td></td>
-      <td>Magdalena Kammerer</td>
-    </tr>
-    <tr>
-      <td>29</td>
-      <td>Turnen</td>
-      <td>Frauengymnastik</td>
-      <td>Erwachsene</td>
-      <td>Montag</td>
-      <td>19:00 - 20:30 Uhr</td>
-      <td>Vicemooshalle, Schlierbachstraße 23,</td>
-      <td>3</td>
-      <td>Nicole Spitz</td>
-    </tr>
-    <tr>
-      <td>30</td>
-      <td>Turnen</td>
-      <td>Allround - Gymnastik für Frauen</td>
-      <td>Erwachsene</td>
-      <td>Montag</td>
-      <td>19:00 - 20:30 Uhr</td>
-      <td>Roggenbachhalle, Roggenbachstraße 11, Schopfheim</td>
-      <td>2</td>
-      <td>Ute Günther</td>
-    </tr>
-    <tr>
-      <td>31</td>
-      <td>Turnen</td>
-      <td>Kleinkinder- und Vorschulturnen Grupp 2</td>
-      <td>Kinder/Jugend</td>
-      <td>Freitag</td>
-      <td>14:15 - 15:30 Uhr</td>
-      <td>Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td>
-      <td></td>
-      <td>Anna Rekk</td>
-    </tr>
-    <tr>
-      <td>32</td>
-      <td>Turnen</td>
-      <td>Jedermann - Fußballspiel 30+</td>
-      <td>Erwachsene</td>
-      <td>Freitag</td>
-      <td>20:00 - 22:00 Uhr</td>
-      <td>Roggenbachhalle, Roggenbachstraße 11, Schopfheim</td>
-      <td>1</td>
-      <td>Bernd Knoll</td>
-    </tr>
-    <tr>
-      <td>33</td>
-      <td>Turnen</td>
-      <td>Geräteturnen für Mädchen</td>
-      <td>Kinder/Jugend</td>
-      <td>Montag</td>
-      <td>17:00 - 19:00 Uhr</td>
-      <td>Vicemooshalle, Schlierbachstraße 23,</td>
-      <td>3</td>
-      <td>Lenja Klausmann</td>
-    </tr>
-    <tr>
-      <td>34</td>
-      <td>Turnen</td>
-      <td>Mädchenturnen (6–14 Jahre)</td>
-      <td>Unbelegt</td>
-      <td>Mittwoch</td>
-      <td>17:00 - 18:30 Uhr</td>
-      <td>Vicemooshalle, Schlierbachstraße 23,</td>
-      <td>3</td>
-      <td>Melanie Licht, Lenja Klausmann</td>
-    </tr>
-    <tr>
-      <td>35</td>
-      <td>Turnen</td>
-      <td>Rückenfit</td>
-      <td>Erwachsene</td>
-      <td>Mittwoch</td>
-      <td>19:30 - 20:30 Uhr</td>
-      <td>Vicemooshalle, Schlierbachstraße 23,</td>
-      <td>3</td>
-      <td>Ute Günter</td>
-    </tr>
-    <tr>
-      <td>36</td>
-      <td>Turnen</td>
-      <td>Eltern-Kind-Turnen Gruppe 1</td>
-      <td>Kinder/Jugend</td>
-      <td>Donnerstag</td>
-      <td>16:45 - 18:00 Uhr</td>
-      <td>Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td>
-      <td></td>
-      <td>Angelina Brüderle</td>
-    </tr>
-    <tr>
-      <td>37</td>
-      <td>Turnen</td>
-      <td>Eltern-Kind-Turnen Gruppe 2</td>
-      <td>Kinder/Jugend</td>
-      <td>Mittwoch</td>
-      <td>16:00 - 17:15 Uhr</td>
-      <td>Vicemooshalle, Schlierbachstraße 23,</td>
-      <td>2</td>
-      <td>Jana Kraus</td>
-    </tr>
-    <tr>
-      <td>38</td>
-      <td>Karate</td>
-      <td>Senioren</td>
-      <td>Erwachsene</td>
-      <td>Dienstag</td>
-      <td>18:00 - 20:00</td>
-      <td>Vicemooshalle, Schlierbachstraße 23,</td>
-      <td>3</td>
-      <td>Giuliano Risorgi</td>
-    </tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">1</td><td style="border: 1px solid #ccc; padding: 8px;">Badminton</td><td style="border: 1px solid #ccc; padding: 8px;">Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Kinder/Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Dienstag</td><td style="border: 1px solid #ccc; padding: 8px;">17:00 - 20:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Hans-Georg Kolodziej</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">2</td><td style="border: 1px solid #ccc; padding: 8px;">Badminton</td><td style="border: 1px solid #ccc; padding: 8px;">Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Kinder/Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Donnerstag</td><td style="border: 1px solid #ccc; padding: 8px;">18:00 - 20:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Hans-Georg Kolodziej</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">3</td><td style="border: 1px solid #ccc; padding: 8px;">Badminton</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene (Hobby)</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Dienstag</td><td style="border: 1px solid #ccc; padding: 8px;">20:00 - 22:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Michael-Dittrich Klimmer</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">4</td><td style="border: 1px solid #ccc; padding: 8px;">Badminton</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene (Hobby)</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Donnerstag</td><td style="border: 1px solid #ccc; padding: 8px;">20:00 - 22:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Michael-Dittrich Klimmer</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">5</td><td style="border: 1px solid #ccc; padding: 8px;">Basketball</td><td style="border: 1px solid #ccc; padding: 8px;">U10 (8–10 Jahre)</td><td style="border: 1px solid #ccc; padding: 8px;">Kinder/Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Mittwoch</td><td style="border: 1px solid #ccc; padding: 8px;">17:30 - 18:30 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Vicemooshalle, Schlierbachstraße 23,</td><td style="border: 1px solid #ccc; padding: 8px;">1</td><td style="border: 1px solid #ccc; padding: 8px;">Matthias Bäumle, Ole Wendelborn</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">6</td><td style="border: 1px solid #ccc; padding: 8px;">Basketball</td><td style="border: 1px solid #ccc; padding: 8px;">U10 (8–10 Jahre)</td><td style="border: 1px solid #ccc; padding: 8px;">Kinder/Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Freitag</td><td style="border: 1px solid #ccc; padding: 8px;">17:30 - 18:30 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Vicemooshalle, Schlierbachstraße 23,</td><td style="border: 1px solid #ccc; padding: 8px;">1</td><td style="border: 1px solid #ccc; padding: 8px;">Matthias Bäumle, Ole Wendelborn</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">7</td><td style="border: 1px solid #ccc; padding: 8px;">Basketball</td><td style="border: 1px solid #ccc; padding: 8px;">U12/U14</td><td style="border: 1px solid #ccc; padding: 8px;">Kinder/Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Dienstag</td><td style="border: 1px solid #ccc; padding: 8px;">17:15 - 18:30 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Theodor-Heuss-Gymnasium - Halle, Schlierbachstraße 19, Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Patrick Weide, Michael Scharbatke, Nikola Cvijan</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">8</td><td style="border: 1px solid #ccc; padding: 8px;">Basketball</td><td style="border: 1px solid #ccc; padding: 8px;">U12/U14</td><td style="border: 1px solid #ccc; padding: 8px;">Kinder/Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Freitag</td><td style="border: 1px solid #ccc; padding: 8px;">17:30 - 18:30 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Vicemooshalle, Schlierbachstraße 23,</td><td style="border: 1px solid #ccc; padding: 8px;">3</td><td style="border: 1px solid #ccc; padding: 8px;">Patrick Weide, Michael Scharbatke, Nikola Cvijan</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">9</td><td style="border: 1px solid #ccc; padding: 8px;">Basketball</td><td style="border: 1px solid #ccc; padding: 8px;">U16</td><td style="border: 1px solid #ccc; padding: 8px;">Kinder/Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Dienstag</td><td style="border: 1px solid #ccc; padding: 8px;">18:30 - 20:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Theodor-Heuss-Gymnasium - Halle, Schlierbachstraße 19, Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">David Schöne, Maurice Hartig</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">10</td><td style="border: 1px solid #ccc; padding: 8px;">Basketball</td><td style="border: 1px solid #ccc; padding: 8px;">U16</td><td style="border: 1px solid #ccc; padding: 8px;">Kinder/Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Freitag</td><td style="border: 1px solid #ccc; padding: 8px;">18:15 - 19:45 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Theodor-Heuss-Gymnasium - Halle, Schlierbachstraße 19, Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">David Schöne, Maurice Hartig</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">11</td><td style="border: 1px solid #ccc; padding: 8px;">Basketball</td><td style="border: 1px solid #ccc; padding: 8px;">Herren (>17)</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Dienstag</td><td style="border: 1px solid #ccc; padding: 8px;">20:00 - 22:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Theodor-Heuss-Gymnasium - Halle, Schlierbachstraße 19, Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">[Vakant]</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">12</td><td style="border: 1px solid #ccc; padding: 8px;">Basketball</td><td style="border: 1px solid #ccc; padding: 8px;">Herren (>17)</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Freitag</td><td style="border: 1px solid #ccc; padding: 8px;">20:00 - 22:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Theodor-Heuss-Gymnasium - Halle, Schlierbachstraße 19, Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">[Vakant]</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">13</td><td style="border: 1px solid #ccc; padding: 8px;">Eskrima</td><td style="border: 1px solid #ccc; padding: 8px;">Allgemeines Training</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Mittwoch</td><td style="border: 1px solid #ccc; padding: 8px;">18:30 - 20:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Julia Cielo</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">14</td><td style="border: 1px solid #ccc; padding: 8px;">Eskrima</td><td style="border: 1px solid #ccc; padding: 8px;">Allgemeines Training</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Freitag</td><td style="border: 1px solid #ccc; padding: 8px;">18:30 - 20:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Julia Cielo</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">15</td><td style="border: 1px solid #ccc; padding: 8px;">Lauftreff</td><td style="border: 1px solid #ccc; padding: 8px;">Lauftraining für Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Montag</td><td style="border: 1px solid #ccc; padding: 8px;">18:30 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Treffpunkt: Wiesenbrücke Altstadt (gegenüber Entegaststraße 30)</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Isabella Nothstein</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">16</td><td style="border: 1px solid #ccc; padding: 8px;">Lauftreff</td><td style="border: 1px solid #ccc; padding: 8px;">Lauftraining für Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Samstag</td><td style="border: 1px solid #ccc; padding: 8px;">9:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Treffpunkt: Wiesenbrücke Altstadt (gegenüber Entegaststraße 30)</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Isabella Nothstein</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">17</td><td style="border: 1px solid #ccc; padding: 8px;">Schneesport</td><td style="border: 1px solid #ccc; padding: 8px;">Schneesport</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Mittwoch</td><td style="border: 1px solid #ccc; padding: 8px;">19:00-22:00</td><td style="border: 1px solid #ccc; padding: 8px;">Theodor-Heuss-Gymnasium - Halle, Schlierbachstraße 19, Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Josi Fleig</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">18</td><td style="border: 1px solid #ccc; padding: 8px;">Schwimmen</td><td style="border: 1px solid #ccc; padding: 8px;">Anfänger und Fortgeschrittene</td><td style="border: 1px solid #ccc; padding: 8px;">Kinder/Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Donnerstag</td><td style="border: 1px solid #ccc; padding: 8px;">16:45 - 18:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Allemannenhalle Maulburg</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Dietmar Birgel</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">19</td><td style="border: 1px solid #ccc; padding: 8px;">Schwimmen</td><td style="border: 1px solid #ccc; padding: 8px;">Anfänger und Fortgeschrittene</td><td style="border: 1px solid #ccc; padding: 8px;">Kinder/Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Samstag</td><td style="border: 1px solid #ccc; padding: 8px;">06:45 - 09:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Allemannenhalle Maulburg</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Dietmar Birgel</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">20</td><td style="border: 1px solid #ccc; padding: 8px;">Schwimmen</td><td style="border: 1px solid #ccc; padding: 8px;">Fortgeschrittene II</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Donnerstag</td><td style="border: 1px solid #ccc; padding: 8px;">17:45 - 19:30 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Allemannenhalle Maulburg</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Eduardo Peñarand</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">21</td><td style="border: 1px solid #ccc; padding: 8px;">Schwimmen</td><td style="border: 1px solid #ccc; padding: 8px;">Fortgeschrittene II</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Samstag</td><td style="border: 1px solid #ccc; padding: 8px;">09:00 - 11:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Allemannenhalle Maulburg</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Eduardo Peñarand</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">22</td><td style="border: 1px solid #ccc; padding: 8px;">Turnen</td><td style="border: 1px solid #ccc; padding: 8px;">Seniorengymnastik 60+</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Montag</td><td style="border: 1px solid #ccc; padding: 8px;">17:15 - 18:15 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Birgit Kropf</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">23</td><td style="border: 1px solid #ccc; padding: 8px;">Turnen</td><td style="border: 1px solid #ccc; padding: 8px;">Fit und Gesund für Sie & Ihn</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Montag</td><td style="border: 1px solid #ccc; padding: 8px;">18:15 - 19:15 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Birgit Kropf</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">24</td><td style="border: 1px solid #ccc; padding: 8px;">Turnen</td><td style="border: 1px solid #ccc; padding: 8px;">Jedermann-Sport 40+</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Montag</td><td style="border: 1px solid #ccc; padding: 8px;">19:30- 21:30 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Hanspeter Pfeifer / Reinhard Oberlach</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">25</td><td style="border: 1px solid #ccc; padding: 8px;">Turnen</td><td style="border: 1px solid #ccc; padding: 8px;">Geräteturnen für Mädchen</td><td style="border: 1px solid #ccc; padding: 8px;">Kinder/Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Freitag</td><td style="border: 1px solid #ccc; padding: 8px;">17:00 - 19:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Vicemooshalle, Schlierbachstraße 23,</td><td style="border: 1px solid #ccc; padding: 8px;">3</td><td style="border: 1px solid #ccc; padding: 8px;">Lenja Klausmann</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">26</td><td style="border: 1px solid #ccc; padding: 8px;">Turnen</td><td style="border: 1px solid #ccc; padding: 8px;">Yoga-Gruppe Frauen</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Mittwoch</td><td style="border: 1px solid #ccc; padding: 8px;">17:00 - 18:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Birgit Kropf</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">27</td><td style="border: 1px solid #ccc; padding: 8px;">Turnen</td><td style="border: 1px solid #ccc; padding: 8px;">Männergymnastik 60+</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Montag</td><td style="border: 1px solid #ccc; padding: 8px;">18:00 - 19:30 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Roggenbachhalle, Roggenbachstraße 11, Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;">3</td><td style="border: 1px solid #ccc; padding: 8px;">Karlheinz Andris</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">28</td><td style="border: 1px solid #ccc; padding: 8px;">Turnen</td><td style="border: 1px solid #ccc; padding: 8px;">Kleinkinder- und Vorschulturnen Grupp 1</td><td style="border: 1px solid #ccc; padding: 8px;">Kinder/Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Freitag</td><td style="border: 1px solid #ccc; padding: 8px;">15:45 - 17:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Magdalena Kammerer</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">29</td><td style="border: 1px solid #ccc; padding: 8px;">Turnen</td><td style="border: 1px solid #ccc; padding: 8px;">Frauengymnastik</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Montag</td><td style="border: 1px solid #ccc; padding: 8px;">19:00 - 20:30 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Vicemooshalle, Schlierbachstraße 23,</td><td style="border: 1px solid #ccc; padding: 8px;">3</td><td style="border: 1px solid #ccc; padding: 8px;">Nicole Spitz</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">30</td><td style="border: 1px solid #ccc; padding: 8px;">Turnen</td><td style="border: 1px solid #ccc; padding: 8px;">Allround - Gymnastik für Frauen</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Montag</td><td style="border: 1px solid #ccc; padding: 8px;">19:00 - 20:30 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Roggenbachhalle, Roggenbachstraße 11, Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;">2</td><td style="border: 1px solid #ccc; padding: 8px;">Ute Günther</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">31</td><td style="border: 1px solid #ccc; padding: 8px;">Turnen</td><td style="border: 1px solid #ccc; padding: 8px;">Kleinkinder- und Vorschulturnen Grupp 2</td><td style="border: 1px solid #ccc; padding: 8px;">Kinder/Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Freitag</td><td style="border: 1px solid #ccc; padding: 8px;">14:15 - 15:30 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Anna Rekk</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">32</td><td style="border: 1px solid #ccc; padding: 8px;">Turnen</td><td style="border: 1px solid #ccc; padding: 8px;">Jedermann - Fußballspiel 30+</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Freitag</td><td style="border: 1px solid #ccc; padding: 8px;">20:00 - 22:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Roggenbachhalle, Roggenbachstraße 11, Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;">1</td><td style="border: 1px solid #ccc; padding: 8px;">Bernd Knoll</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">33</td><td style="border: 1px solid #ccc; padding: 8px;">Turnen</td><td style="border: 1px solid #ccc; padding: 8px;">Geräteturnen für Mädchen</td><td style="border: 1px solid #ccc; padding: 8px;">Kinder/Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Montag</td><td style="border: 1px solid #ccc; padding: 8px;">17:00 - 19:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Vicemooshalle, Schlierbachstraße 23,</td><td style="border: 1px solid #ccc; padding: 8px;">3</td><td style="border: 1px solid #ccc; padding: 8px;">Lenja Klausmann</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">34</td><td style="border: 1px solid #ccc; padding: 8px;">Turnen</td><td style="border: 1px solid #ccc; padding: 8px;">Mädchenturnen (6–14 Jahre)</td><td style="border: 1px solid #ccc; padding: 8px;">Unbelegt</td><td style="border: 1px solid #ccc; padding: 8px;">Mittwoch</td><td style="border: 1px solid #ccc; padding: 8px;">17:00 - 18:30 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Vicemooshalle, Schlierbachstraße 23,</td><td style="border: 1px solid #ccc; padding: 8px;">3</td><td style="border: 1px solid #ccc; padding: 8px;">Melanie Licht, Lenja Klausmann</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">35</td><td style="border: 1px solid #ccc; padding: 8px;">Turnen</td><td style="border: 1px solid #ccc; padding: 8px;">Rückenfit</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Mittwoch</td><td style="border: 1px solid #ccc; padding: 8px;">19:30 - 20:30 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Vicemooshalle, Schlierbachstraße 23,</td><td style="border: 1px solid #ccc; padding: 8px;">3</td><td style="border: 1px solid #ccc; padding: 8px;">Ute Günter</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">36</td><td style="border: 1px solid #ccc; padding: 8px;">Turnen</td><td style="border: 1px solid #ccc; padding: 8px;">Eltern-Kind-Turnen Gruppe 1</td><td style="border: 1px solid #ccc; padding: 8px;">Kinder/Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Donnerstag</td><td style="border: 1px solid #ccc; padding: 8px;">16:45 - 18:00 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Dr.-Max-Metzger-Schulsporthalle, Karlstraße,  Schopfheim</td><td style="border: 1px solid #ccc; padding: 8px;"></td><td style="border: 1px solid #ccc; padding: 8px;">Angelina Brüderle</td></tr>
+<tr style="background-color: #ffffff;"><td style="border: 1px solid #ccc; padding: 8px;">37</td><td style="border: 1px solid #ccc; padding: 8px;">Turnen</td><td style="border: 1px solid #ccc; padding: 8px;">Eltern-Kind-Turnen Gruppe 2</td><td style="border: 1px solid #ccc; padding: 8px;">Kinder/Jugend</td><td style="border: 1px solid #ccc; padding: 8px;">Mittwoch</td><td style="border: 1px solid #ccc; padding: 8px;">16:00 - 17:15 Uhr</td><td style="border: 1px solid #ccc; padding: 8px;">Vicemooshalle, Schlierbachstraße 23,</td><td style="border: 1px solid #ccc; padding: 8px;">2</td><td style="border: 1px solid #ccc; padding: 8px;">Jana Kraus</td></tr>
+<tr style="background-color: #f4f8fc;"><td style="border: 1px solid #ccc; padding: 8px;">38</td><td style="border: 1px solid #ccc; padding: 8px;">Karate</td><td style="border: 1px solid #ccc; padding: 8px;">Senioren</td><td style="border: 1px solid #ccc; padding: 8px;">Erwachsene</td><td style="border: 1px solid #ccc; padding: 8px;">Dienstag</td><td style="border: 1px solid #ccc; padding: 8px;">18:00 - 20:00</td><td style="border: 1px solid #ccc; padding: 8px;">Vicemooshalle, Schlierbachstraße 23,</td><td style="border: 1px solid #ccc; padding: 8px;">3</td><td style="border: 1px solid #ccc; padding: 8px;">Giuliano Risorgi</td></tr>
+
   </tbody>
 </table>
 
@@ -486,4 +67,3 @@
         });
     }
 </script>
-
