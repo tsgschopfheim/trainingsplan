@@ -481,12 +481,12 @@
 <script>
     function filterTable() {
         const input = document.getElementById("searchInput").value.toLowerCase().trim();
-        const searchTerms = input.split(/\s+/); // einzelne Begriffe erkennen
+        const searchTerms = input.split(/\s+/); // getrennte Suchbegriffe
         const rows = document.querySelectorAll("#dataTable tbody tr");
 
         rows.forEach(row => {
             const rowText = row.textContent.toLowerCase();
-            const match = searchTerms.some(term => rowText.includes(term)); // ODER statt UND
+            const match = searchTerms.every(term => rowText.includes(term)); // <-- ALLE müssen vorkommen
             row.style.display = match ? "" : "none";
         });
     }
