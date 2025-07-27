@@ -1,48 +1,66 @@
-<style>
-    h2 { font-family: Arial, sans-serif; }
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Trainingsangebot</title>
+  <style>
+    h2 {
+      font-family: Arial, sans-serif;
+    }
 
     input[type="text"] {
-        margin-bottom: 15px;
-        padding: 5px;
-        width: 300px;
+      margin-bottom: 15px;
+      padding: 5px;
+      width: 300px;
     }
 
     table#dataTable {
-        border-collapse: collapse;
-        width: 100%;
-        font-family: Arial, sans-serif;
-        font-size: 12px;
+      border-collapse: collapse;
+      width: 100%;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
     }
 
     table#dataTable th,
     table#dataTable td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left;
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
     }
 
     table#dataTable th {
-        background-color: #dbe5f0 !important;
+      background-color: #dbe5f0 !important;
     }
 
     table#dataTable tbody tr:nth-child(even) {
-        background-color: #f4f8fc !important;
+      background-color: #f4f8fc !important;
     }
 
     table#dataTable tbody tr:nth-child(odd) {
-        background-color: #ffffff !important;
+      background-color: #ffffff !important;
     }
 
     table#dataTable tbody tr:hover {
-        background-color: #e6f2ff !important;
+      background-color: #e6f2ff !important;
     }
-</style>
+
+    /* Variante B: Scrollbare Tabelle auf kleinen Geräten */
+    @media (max-width: 768px) {
+      table#dataTable {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+<body>
 
 
 <h2>Bitte nutzen sie die Filterfunktion um das richtige Training zu finden</h2>
 <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Suchbegriff (Abteilung, Sportart, Trainer eingeben...">
 
-<div style="overflow-x: auto; width: 100%;">
+
     <table border="1" id="dataTable">
       <thead>
         <tr style="text-align: right;">
@@ -478,7 +496,6 @@
         </tr>
       </tbody>
     </table>
-</div>
 
 <script>
     function filterTable() {
